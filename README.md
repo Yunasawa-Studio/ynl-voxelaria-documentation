@@ -1,2 +1,2 @@
-<div align=center><b>NL - Voxelaria</b> Documentation</div>
+<div align=center><h1>YNL - Voxelaria Documentation</h1></div>
 Documentation for YNL - Voxelaria
