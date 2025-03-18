@@ -4,7 +4,7 @@ body {
 }
 
 .split-view {
-    margin-top: 80px;
+    margin-top: 85px;
     display: flex;
     height: calc(100vh - 50px); /* Subtract TitleBar height */
     width: 100%;
@@ -14,7 +14,7 @@ body {
     flex: 1;
     overflow: auto;
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
     .panel.left {
