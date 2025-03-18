@@ -30,7 +30,7 @@
     </head>
     <body>
         <div class="TitleBar">
-            <img src="Resources/Images/Icons/Logo.png"/>
+            <img src="Resources/Images/Icons/Logo.png" />
             <p><b>YNL - Voxelaria</b></p>
             <p>Documentation</p>
         </div>
@@ -50,80 +50,69 @@
 
         <div class="split-view">
             <div class="panel left">
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space0" src="Resources/Images/Icons/Foldout Arrow.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space1" src="Resources/Images/Icons/Foldout Arrow.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space2" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space2" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space2" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space1" src="Resources/Images/Icons/Foldout Arrow.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space2" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space2" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-                <div class="ContentIndex">
-                    <img class="FoldoutArrow Space2" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
+                <div class="ContentIndex Space0">
+                    <div class="ContentLabel">
+                        <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
+                        <p class="IndexLabel">Hello world</p>
+                    </div>
+                    <div class="ContentIndex Space1 hidden collapsible">
+                        <div class="ContentLabel">
+                            <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
+                            <p class="IndexLabel">Hello world</p>
+                        </div>
+                        <div class="ContentIndex Space2 hidden collapsible">
+                            <div class="ContentLabel">
+                                <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
+                                <p class="IndexLabel">Hello world</p>
+                            </div>
+                        </div>
+                        <div class="ContentIndex Space2 hidden collapsible">
+                            <div class="ContentLabel">
+                                <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
+                                <p class="IndexLabel">Hello world</p>
+                            </div>
+                        </div>
+                        <div class="ContentIndex Space2 hidden collapsible">
+                            <div class="ContentLabel">
+                                <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
+                                <p class="IndexLabel">Hello world</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="divider"></div>
             <div class="panel right">
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <p>Right Panel Content</p>
-                <!-- Add more content here -->
+
             </div>
         </div>
 
         <script src="Scripts/AAA.js"></script>
+        <script>
+            function toggleVisibility(element)
+            {
+                const children = element.querySelectorAll(':scope > .ContentIndex');
+                children.forEach(child => {
+                    const collapsible = child.querySelector(':scope > .ContentLabel');
+                    if (child.classList.contains('expanded')) {
+                        child.classList.remove('expanded');
+                    } else {
+                        child.classList.add('expanded');
+                    }
+                    child.classList.toggle('hidden');
+                });
+            }
+
+            // Attach click event to all ContentIndex elements with children
+            document.querySelectorAll('.ContentIndex').forEach(content => {
+                content.addEventListener('click', (event) => {
+                    // Prevent triggering parent click events
+                    event.stopPropagation();
+
+                    // Toggle the visibility of direct child ContentIndex elements
+                    toggleVisibility(content);
+                });
+            });
+        </script>
     </body>
     </html>

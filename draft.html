@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested Toggle</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .ContentIndex {
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .FoldoutArrow {
+            width: 12px;
+            height: 12px;
+            vertical-align: middle;
+        }
+    </style>
+
+    <link rel="stylesheet" href="Styles/ContentIndex.css">
+</head>
+<body>
+    <!-- Space0 -->
+    <div class="ContentIndex Space0">
+        <div class="ContentLabel">
+            <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
+            <p class="IndexLabel">Hello world</p>
+        </div>
+        <!-- Nested Space1 -->
+        <div class="ContentIndex Space1 hidden collapsible">
+            <div class="ContentLabel">
+                <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
+                <p class="IndexLabel">Hello world</p>
+            </div>
+            <!-- Nested Space2 -->
+            <div class="ContentIndex Space2 hidden collapsible">
+                <div class="ContentLabel">
+                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
+                    <p class="IndexLabel">Hello world</p>
+                </div>
+            </div>
+            <div class="ContentIndex Space2 hidden collapsible">
+                <div class="ContentLabel">
+                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
+                    <p class="IndexLabel">Hello world</p>
+                </div>
+            </div>
+            <div class="ContentIndex Space2 hidden collapsible">
+                <div class="ContentLabel">
+                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
+                    <p class="IndexLabel">Hello world</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleVisibility(element) {
+            const children = element.querySelectorAll(':scope > .ContentIndex');
+            children.forEach(child => {
+                const collapsible = child.querySelector(':scope > .ContentLabel');
+                if (child.classList.contains('expanded')) {
+                    child.classList.remove('expanded');
+                } else {
+                    child.classList.add('expanded');
+                }
+                child.classList.toggle('hidden');
+            });
+        }
+
+        // Attach click event to all ContentIndex elements with children
+        document.querySelectorAll('.ContentIndex').forEach(content => {
+            content.addEventListener('click', (event) => {
+                // Prevent triggering parent click events
+                event.stopPropagation();
+
+                // Toggle the visibility of direct child ContentIndex elements
+                toggleVisibility(content);
+            });
+        });
+
+    </script>
+</body>
+</html>

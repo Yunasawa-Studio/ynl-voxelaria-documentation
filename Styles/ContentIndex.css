@@ -1,36 +1,42 @@
-.ContentIndex
-{
+.ContentIndex {
+}
+
+.ContentLabel {
+    height: 25px;
     display: flex;
     flex-direction: row;
-    align-items: center;
-
-    height: 25px;
-    width: 100%;
 }
 
-.FoldoutArrow
-{
+.FoldoutArrow {
+    cursor: pointer;
     width: 15px;
     height: 15px;
-    
     filter: brightness(0) saturate(100%) invert(8%) sepia(28%) saturate(4101%) hue-rotate(244deg) brightness(90%) contrast(97%);
 }
-.Space0
-{
+
+.ContentIndex.Space0 {
     margin: 5px 5px 5px 0px;
 }
-.Space1 
-{
+
+.ContentIndex.Space1 {
     margin: 5px 5px 5px 20px;
 }
-.Space2
-{
+
+.ContentIndex.Space2 {
     margin: 5px 5px 5px 40px;
 }
 
-.IndexLabel
-{
+.IndexLabel {
     height: 20px;
     margin: 0px;
     font-weight: bold;
+}
+
+.collapsible {
+    overflow: hidden;
+    max-height: 0;
+}
+
+.collapsible.expanded {
+    max-height: 500px; /* Adjust this value as needed to fit your content */
 }
