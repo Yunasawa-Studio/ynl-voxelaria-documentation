@@ -19,7 +19,8 @@ body {
 
     .panel.left {
         background-color: #f4edff;
-        max-width: 350px; /* Maximum width for the left panel */
+        min-width: 300px; /* Maximum width for the left panel */
+        max-width: 300px; /* Maximum width for the left panel */
         flex: 1;
         overflow: auto;
         padding: 10px;
