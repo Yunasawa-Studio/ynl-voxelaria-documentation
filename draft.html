@@ -3,86 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nested Toggle</title>
+    <title>Precise HTML Generator</title>
     <style>
-        .hidden {
-            display: none;
+        textarea, pre {
+            width: 100%;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 14px;
         }
 
-        .ContentIndex {
-            cursor: pointer;
-            margin-left: 20px;
-        }
-
-        .FoldoutArrow {
-            width: 12px;
-            height: 12px;
-            vertical-align: middle;
+        button {
+            margin-top: 10px;
         }
     </style>
-
-    <link rel="stylesheet" href="Styles/ContentIndex.css">
 </head>
 <body>
-    <!-- Space0 -->
-    <div class="ContentIndex Space0">
-        <div class="ContentLabel">
-            <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
-            <p class="IndexLabel">Hello world</p>
-        </div>
-        <!-- Nested Space1 -->
-        <div class="ContentIndex Space1 hidden collapsible">
-            <div class="ContentLabel">
-                <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
-                <p class="IndexLabel">Hello world</p>
-            </div>
-            <!-- Nested Space2 -->
-            <div class="ContentIndex Space2 hidden collapsible">
-                <div class="ContentLabel">
-                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-            </div>
-            <div class="ContentIndex Space2 hidden collapsible">
-                <div class="ContentLabel">
-                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-            </div>
-            <div class="ContentIndex Space2 hidden collapsible">
-                <div class="ContentLabel">
-                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
-                    <p class="IndexLabel">Hello world</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1>Precise HTML Generator</h1>
+    <textarea id="inputArea" rows="10" placeholder="Paste your outline here..."></textarea>
+    <br>
+    <button onclick="generateHTML()">Generate HTML</button>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    <pre id="output"></pre>
 
     <script>
-        function toggleVisibility(element) {
-            const children = element.querySelectorAll(':scope > .ContentIndex');
-            children.forEach(child => {
-                const collapsible = child.querySelector(':scope > .ContentLabel');
-                if (child.classList.contains('expanded')) {
-                    child.classList.remove('expanded');
-                } else {
-                    child.classList.add('expanded');
+        function generateHTML() {
+            const inputText = document.getElementById("inputArea").value;
+            const lines = inputText.split("\n");
+            let html = '<div class="ContentIndex Space0">\n';
+            let indent = '    '; // 4 spaces for indentation
+            const hierarchy = []; // Stack to track parent-child structure
+
+            lines.forEach(line => {
+                const parts = line.match(/^#(\d+(\.\d+)*) (.+)/); // Match hierarchy and label
+                if (!parts) return; // Skip invalid lines
+
+                const level = parts[1].split('.').length - 1; // Hierarchy level
+                const labelText = parts[3]; // Label text
+                const spaceClass = `Space${level}`;
+
+                // Close levels if necessary
+                while (hierarchy.length > level) {
+                    html += `${indent.repeat(hierarchy.length)}</div>\n`;
+                    hierarchy.pop();
                 }
-                child.classList.toggle('hidden');
+
+                // Add the current level
+                html += `${indent.repeat(hierarchy.length + 1)}<div class="ContentIndex ${spaceClass} hidden collapsible">\n`;
+                html += `${indent.repeat(hierarchy.length + 2)}<div class="ContentLabel">\n`;
+                html += `${indent.repeat(hierarchy.length + 3)}<img class="FoldoutArrow" src="Resources/Images/Icons/${level === 2 ? "Dot" : "Foldout Arrow"}.png" />\n`;
+                html += `${indent.repeat(hierarchy.length + 3)}<p class="IndexLabel">${labelText}</p>\n`;
+                html += `${indent.repeat(hierarchy.length + 2)}</div>\n`;
+
+                hierarchy.push(spaceClass); // Add level to stack
             });
+
+            // Close remaining levels
+            while (hierarchy.length > 0) {
+                html += `${indent.repeat(hierarchy.length)}</div>\n`;
+                hierarchy.pop();
+            }
+
+            html += '</div>';
+            document.getElementById("output").innerText = html; // Display formatted HTML
         }
 
-        // Attach click event to all ContentIndex elements with children
-        document.querySelectorAll('.ContentIndex').forEach(content => {
-            content.addEventListener('click', (event) => {
-                // Prevent triggering parent click events
-                event.stopPropagation();
-
-                // Toggle the visibility of direct child ContentIndex elements
-                toggleVisibility(content);
+        function copyToClipboard() {
+            const outputText = document.getElementById("output").innerText;
+            navigator.clipboard.writeText(outputText).then(() => {
+                alert("HTML copied to clipboard!");
+            }, (err) => {
+                alert("Failed to copy HTML: " + err);
             });
-        });
-
+        }
     </script>
 </body>
 </html>
