@@ -57,17 +57,22 @@
                     </div>
                     <div class="ContentIndex Space1 hidden collapsible">
                         <div class="ContentLabel">
+                            <div class="Breadscrumb"></div>
                             <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
                             <p class="IndexLabel">Basic meshing generation</p>
                         </div>
                         <div class="ContentIndex Space2 hidden collapsible">
                             <div class="ContentLabel">
+                                <div class="Breadscrumb"></div>
+                                <div class="Breadscrumb"></div>
                                 <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
                                 <p class="IndexLabel">Voxel mesh details</p>
                             </div>
                         </div>
                         <div class="ContentIndex Space2 hidden collapsible">
                             <div class="ContentLabel">
+                                <div class="Breadscrumb"></div>
+                                <div class="Breadscrumb"></div>
                                 <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
                                 <p class="IndexLabel">Voxel texturing</p>
                             </div>
@@ -75,52 +80,16 @@
                     </div>
                     <div class="ContentIndex Space1 hidden collapsible">
                         <div class="ContentLabel">
+                            <div class="Breadscrumb"></div>
                             <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
                             <p class="IndexLabel">Mesh generating optimization</p>
                         </div>
                         <div class="ContentIndex Space2 hidden collapsible">
                             <div class="ContentLabel">
+                                <div class="Breadscrumb"></div>
+                                <div class="Breadscrumb"></div>
                                 <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
                                 <p class="IndexLabel">Use Jobs/Burst</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ContentIndex Space0">
-                    <div class="ContentIndex Space0 hidden collapsible">
-                        <div class="ContentLabel">
-                            <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
-                            <p class="IndexLabel">Voxel mesh generation</p>
-                        </div>
-                        <div class="ContentIndex Space1 hidden collapsible">
-                            <div class="ContentLabel">
-                                <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
-                                <p class="IndexLabel">Basic meshing generation</p>
-                            </div>
-                            <div class="ContentIndex Space2 hidden collapsible">
-                                <div class="ContentLabel">
-                                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
-                                    <p class="IndexLabel">Voxel mesh details</p>
-                                </div>
-                            </div>
-                            <div class="ContentIndex Space2 hidden collapsible">
-                                <div class="ContentLabel">
-                                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
-                                    <p class="IndexLabel">Voxel texturing</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ContentIndex Space1 hidden collapsible">
-                            <div class="ContentLabel">
-                                <img class="FoldoutArrow" src="Resources/Images/Icons/Foldout Arrow.png" />
-                                <p class="IndexLabel">Mesh generating optimization</p>
-                            </div>
-                            <div class="ContentIndex Space2 hidden collapsible">
-                                <div class="ContentLabel">
-                                    <img class="FoldoutArrow" src="Resources/Images/Icons/Dot.png" />
-                                    <p class="IndexLabel">Use Jobs/Burst</p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -138,13 +107,21 @@
                 const children = element.querySelectorAll(':scope > .ContentIndex');
                 children.forEach(child => {
                     const collapsible = child.querySelector(':scope > .ContentLabel');
-                    if (child.classList.contains('expanded')) {
+                    if (child.classList.contains('expanded'))
+                    {
                         child.classList.remove('expanded');
-                    } else {
+                    }
+                    else
+                    {
                         child.classList.add('expanded');
                     }
                     child.classList.toggle('hidden');
                 });
+
+                const arrow = element.querySelector(':scope > .ContentLabel > .FoldoutArrow');
+                if (arrow) {
+                    arrow.classList.toggle('FoldoutArrow-Expanded');
+                }
             }
 
             // Attach click event to all ContentIndex elements with children

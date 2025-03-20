@@ -2,16 +2,25 @@
 }
 
 .ContentLabel {
-    height: 25px;
+    cursor: pointer;
     display: flex;
     flex-direction: row;
+    height: 25px;
+    padding-left: 5px;
+}
+.ContentLabel:hover {
+    background-color: #e5d4ff;
+    border-radius: 5px;
 }
 
 .FoldoutArrow {
-    cursor: pointer;
+    align-self: center;
     width: 15px;
     height: 15px;
     filter: brightness(0) saturate(100%) invert(8%) sepia(28%) saturate(4101%) hue-rotate(244deg) brightness(90%) contrast(97%);
+}
+.FoldoutArrow-Expanded {
+    transform: rotate(90deg);
 }
 
 .ContentIndex.Space0 {
@@ -19,17 +28,25 @@
 }
 
 .ContentIndex.Space1 {
-    margin: 0 0 0 20px;
+    margin: 0 0 0 0px;
 }
 
 .ContentIndex.Space2 {
-    margin: 0 0 0 20px;
+    margin: 0 0 0 0px;
 }
 
 .IndexLabel {
-    height: 20px;
-    margin: 0px;
+    height: 25px;
+    margin: 0 0 0 5px;
     font-weight: bold;
+    align-content: center;
+}
+
+.Breadscrumb {
+    background-color: #1f1f1f;
+    width: 1px;
+    height: 100%;
+    margin: 0 12px 0 7px;
 }
 
 .collapsible {
