@@ -9,7 +9,7 @@
     padding-left: 5px;
 }
 .ContentLabel:hover {
-    background-color: #e5d4ff;
+    background-color: #ddc7ff;
     border-radius: 5px;
 }
 
@@ -23,22 +23,10 @@
     transform: rotate(90deg);
 }
 
-.ContentIndex.Space0 {
-    margin: 5px 5px 5px 0px;
-}
-
-.ContentIndex.Space1 {
-    margin: 0 0 0 0px;
-}
-
-.ContentIndex.Space2 {
-    margin: 0 0 0 0px;
-}
-
 .IndexLabel {
+    font-weight: bold;
     height: 25px;
     margin: 0 0 0 5px;
-    font-weight: bold;
     align-content: center;
 }
 
