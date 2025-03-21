@@ -20,9 +20,9 @@ body {
     .panel.left {
         background-color: #f4edff;
         min-width: 300px; /* Maximum width for the left panel */
-        max-width: 300px; /* Maximum width for the left panel */
-        flex: 1;
-        overflow: auto;
+        max-width: 500px; /* Maximum width for the left panel */
+        flex: 0;
+        overflow: hidden;
         padding: 10px;
         scrollbar-color: #cba8ff #f4edff;
     }
