@@ -1,2 +1,1 @@
-<div align=center><h1>YNL - Voxelaria Documentation</h1></div>
-Documentation for YNL - Voxelaria
+## See documentation [here](https://yunasawa-studio.github.io/ynl-voxelaria-documentation/)
